@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190228042919_addcustomer.cs" />
+    <Compile Remove="Migrations\20190228045955_addProductCustomer.cs" />
+    <Compile Remove="Migrations\20190228050801_addProductCustomer.cs" />
+    <Compile Remove="Migrations\20190228163703_addorder.cs" />
+    <Compile Remove="Migrations\20190228164434_addorderrequired.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ElectroShop.Domain.Contract\ElectroShop.Domain.Contract.csproj" />
+    <ProjectReference Include="..\ElectroShop.Domain.Entities\ElectroShop.Domain.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

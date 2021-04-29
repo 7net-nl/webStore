@@ -1,0 +1,50 @@
+﻿ <!-- HEADER -->
+<header>
+    <!-- TOP HEADER -->
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-right">
+                <li><a href="~/#"><i class="fa fa-map-marker"></i> None</a></li>
+                <li><a href="~/#"><i class="fa fa-envelope-o"></i> Test@email.com</a></li>
+                <li><a href="~/#"><i class="fa fa-phone"></i> +989360000000</a></li>
+
+            </ul>
+            <ul class="header-links pull-left">
+
+                <li><a asp-action="SignIn" asp-controller="Home" asp-area="Users"><i class="fa fa-user-o"></i> ورود</a></li>
+                <li><a asp-action="SignUp" asp-controller="Home" asp-area="Users"><i class="fa fa-user-o"></i> ثبت نام</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- /TOP HEADER -->
+    <!-- MAIN HEADER -->
+    <div id="header">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                @await Component.InvokeAsync("CartWishList")
+
+                @await Component.InvokeAsync("SearchBar")
+
+                <!-- LOGO -->
+                <div class="col-md-3 clearfix">
+                    <div class="header-logo">
+                        <a asp-action="Index" class="logo">
+                            <h3 class="logo-h4">فروشگاه لوازم دیحیتال</h3>
+                        </a>
+                    </div>
+                </div>
+                <!-- /LOGO -->
+
+
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->

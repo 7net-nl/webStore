@@ -1,0 +1,46 @@
+﻿@{
+    var CartPartial = new CartPartialViewModel { Cart = new List<CartViewModel>() };
+    if (Context.Session.CheckAvailable("Cart"))
+    {
+        CartPartial.Count = Context.Session.GetJson<List<CartViewModel>>("Cart").Count;
+        CartPartial.Cart = Context.Session.GetJson<List<CartViewModel>>("Cart");
+        Context.Session.GetJson<List<CartViewModel>>("Cart").ForEach(c => CartPartial.TotalPrice = CartPartial.TotalPrice + c.TotalPrice);
+    }
+}
+<div class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <i class="fa fa-shopping-cart"></i>
+        <span>سبد خرید</span>
+        <div class="qty">@CartPartial.Count</div>
+    </a>
+    <div class="cart-dropdown">
+        <div class="cart-list">
+
+            @foreach (var item in CartPartial.Cart)
+            {
+                <div class="product-widget">
+                    <div class="product-img">
+                        <img src="@Url.Content($@"~/img/{item.Product.Images[0].FileName}")" width="64" height="64" alt="">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-name"><a asp-action="Detail" asp-controller="Home" asp-area="Home" asp-route-Id="@item.Product.ID"></a>@item.Product.Title</h3>
+                        <h4 class="product-price"><span class="qty">@item.Quntity</span></h4>
+                    </div>
+                    <form asp-action="Remove" asp-controller="Home" asp-area="Cart" asp-route-Id="@item.Product.ID" asp-route-Remove="true" method="post">
+                        <button class="delete"><i class="fa fa-close"></i></button>
+                    </form>
+                </div>
+
+
+            }
+        </div>
+        <div class="cart-summary">
+            <small>تعداد : @CartPartial.Count</small>
+            <h5>جمع کل : ریال @CartPartial.TotalPrice.ToString("0,0")</h5>
+        </div>
+        <div class="cart-btns">
+            <a asp-action="Index" asp-controller="Home" asp-area="Cart">سبد خرید</a>
+            <a asp-action="Index" asp-controller="CheckOut" asp-area="Cart"><i class="fa fa-arrow-circle-right"></i> ادامه و تایید خرید </a>
+        </div>
+    </div>
+</div>

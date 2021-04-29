@@ -1,0 +1,21 @@
+﻿<!-- SEARCH BAR -->
+<div class="col-md-6">
+    <div class="header-search">
+        <form>
+            <button class="search-btn">جستجو</button>
+            <input class="input" placeholder="متن را برای جستجو وارد کنید">
+            <select class="input-select">
+                <option value="0" disabled="disabled" selected="selected">دسته بندی</option>
+                @foreach (var item in ViewBag?.SearchBarCategory as List<CategoryViewModel>)
+                {
+                    <option value="@item.ID">@item.Name</option>
+                }
+
+               
+                
+            </select>
+
+        </form>
+    </div>
+</div>
+<!-- /SEARCH BAR -->

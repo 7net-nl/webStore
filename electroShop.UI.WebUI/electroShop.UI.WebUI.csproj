@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>09bc7cb2-8a29-4248-a742-b5248b85c594</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\13971212072133_addseed.cs" />
+    <Compile Remove="Migrations\13971212072133_addseed.Designer.cs" />
+    <Compile Remove="Migrations\13971212110210_addmyuser.cs" />
+    <Compile Remove="Migrations\13971212110210_addmyuser.Designer.cs" />
+    <Compile Remove="Migrations\20190224074833_init01.cs" />
+    <Compile Remove="Migrations\20190224074833_init01.Designer.cs" />
+    <Compile Remove="Migrations\20190302110557_myuser.cs" />
+    <Compile Remove="Migrations\20190302110557_myuser.Designer.cs" />
+    <Compile Remove="Migrations\20190302111148_myuser.cs" />
+    <Compile Remove="Migrations\20190302111148_myuser.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\ElectroShop.Domain.Contract\ElectroShop.Domain.Contract.csproj" />
+    <ProjectReference Include="..\ElectroShop.Domain.Entities\ElectroShop.Domain.Entities.csproj" />
+    <ProjectReference Include="..\ElectroShop.Infrasctures.Data.Ef\ElectroShop.Infrasctures.Data.Ef.csproj" />
+    <ProjectReference Include="..\ElectroShop.Service.Application\ElectroShop.Service.Application.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Areas\Cart\Views\Shared\" />
+    <Folder Include="Areas\Users\Views\Shared\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\MyResources.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

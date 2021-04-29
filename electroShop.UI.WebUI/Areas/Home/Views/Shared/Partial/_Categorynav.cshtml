@@ -1,0 +1,11 @@
+﻿@model CategoryViewModel
+
+
+
+@foreach (var item in Model.Category)
+{
+    <li><a asp-action="Store" asp-controller="Home" asp-area="Home" asp-route-Category="@item.Name">@item.Name</a></li>
+}
+
+    <li><a asp-action="Store" asp-controller="Home" asp-area="Home">همه محصولات</a></li>
+    <li><a asp-action="Index" asp-controller="Home" asp-area="Home">صفحه اصلی</a></li>

@@ -1,0 +1,21 @@
+﻿ <!-- store bottom filter -->
+<div class="store-filter clearfix">
+    <span class="store-qty">نمایش در صفحه @ViewBag.ProductSeeCount از @ViewBag?.ProductCount محصول</span>
+    <ul class="store-pagination">
+        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+        {
+            if (i == ViewBag?.SelectPage)
+            {
+                <li class="active"><a>@i</a></li>
+            }
+
+            else
+            {
+                <li><a asp-action="Store" asp-controller="Home" asp-route-SelectPage="@i">@i</a></li>
+            }
+        }
+     
+        
+    </ul>
+</div>
+<!-- /store bottom filter -->

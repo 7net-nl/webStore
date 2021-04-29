@@ -1,0 +1,119 @@
+﻿@model CustomerViewModel
+
+@await Html.PartialAsync("_BreedCrumb", new BreedCrumbViewModel { Link = "ثبت سفارش" })
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- Order Details -->
+            <div class="col-md-5 order-details">
+                <div class="section-title text-center">
+
+                </div>
+                <div class="order-summary">
+                    <div class="order-col">
+                        <div><strong>محصولات</strong></div>
+                        <div><strong>جمع</strong></div>
+                    </div>
+                    <div class="order-products">
+
+                        @foreach (var item in Model.Customer.Orders)
+                        {
+                            <div class="order-col">
+                                <div>"@item.Quntity x @item.Product.Title"</div>
+
+                                @if (item.Product.DiscountPrice > 0)
+                                {
+                                    <div>ریال @item.Product.DiscountPrice.Value.ToString("0,0")</div>
+                                }
+                                else
+
+                                {
+                                    <div>ریال @item.Product.Price.ToString("0,0")</div>
+                                }
+
+                            </div>
+                        }
+
+
+                    </div>
+                    <div class="order-col">
+                        <div>کرایه</div>
+                        <div><strong>رایگان</strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div>تعداد</div>
+                        <div><strong>@Model.Customer.Quntity</strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div><strong>جمع کل</strong></div>
+                        <div><strong class="order-total">ریال @Model.Customer.TotalPrice.ToString("0,0")</strong></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /Order Details -->
+            <div class="col-md-7">
+                <!-- Billing Details -->
+                <div class="billing-details">
+                    <div class="section-title">
+                  
+                        <h3 class="title">سفارش شما با موفقیت ثبت شد</h3>
+                        <h3 class="title">لطفا بعد از پرداخت شماره فیش واریزی را به همکاران ما اطلاع دهید </h3>
+                        
+                        <h3 class="title">مشخصات دریافت کننده</h3>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.FirstName" value="@Model.Customer.FirstName" class="input" placeholder="نام" readonly="readonly" disabled="disabled"/>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.LastName" value="@Model.Customer.LastName" class="input" placeholder="نام خانوادگی" readonly="readonly" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.Email" value="@Model.Customer.Email" class="input" placeholder="ایمیل" readonly="readonly" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.Address" value="@Model.Customer.Address" class="input" placeholder="آدرس" readonly="readonly" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.City" value="@Model.Customer.City" class="input" placeholder="شهر" readonly="readonly" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.Country" value="@Model.Customer.Country" class="input" placeholder="استان" readonly="readonly" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.PostCode" value="@Model.Customer.PostCode" class="input" placeholder="کد پستی" readonly="readonly" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Customer.Tel" value="@Model.Customer.Tel" class="input" placeholder="تلفن" readonly="readonly" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea asp-for="Customer.Description" class="input" placeholder="توضیحات"  readonly="readonly" disabled>@Model.Customer.Description"</textarea>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- /row -->
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <form asp-action="Index" asp-controller="Home" asp-area="Home">
+                    <button type="submit" class="primary-btn order-submit">بازگشت به صفحه اصلی</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+        <!-- /container -->
+    </div>
+</div>

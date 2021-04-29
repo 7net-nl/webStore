@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "صفحه اصلی";
+}
+
+@await Component.InvokeAsync("ProductCarousel", new { Title = "تخفیفات ویژه روز" })
+@await Component.InvokeAsync("ProductHotDeal")
+@await Component.InvokeAsync("ProductCarousel", new { Title = "محصولات جدید" })
+@await Component.InvokeAsync("ProductBestCollection")
+@await Component.InvokeAsync("ProductCarousel", new { Title = "پرفروش ترین ها" })
+@await Component.InvokeAsync("ProductGrid", new { Title = "دسته چینی از محصولات جدید" })
+
+

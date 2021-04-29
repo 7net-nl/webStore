@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+@await  Html.PartialAsync("Head")
+</head>
+<body>
+    @await Html.PartialAsync("Header")
+    @await Component.InvokeAsync("Navigation")
+    @RenderBody()
+    @await Component.InvokeAsync("NewsLetter")
+    @await Component.InvokeAsync("Footer")
+    @await Html.PartialAsync("JavaScript")
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>

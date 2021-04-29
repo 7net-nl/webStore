@@ -1,0 +1,153 @@
+﻿@model CheckOutViewModel
+
+@await Html.PartialAsync("_BreedCrumb", new BreedCrumbViewModel { Link = "تایید سفارش" })
+
+
+<form asp-action="Index" asp-controller="CheckOut" asp-area="Cart" method="post">
+
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <!-- Order Details -->
+                <div class="col-md-5 order-details">
+                    <div class="section-title text-center">
+                        <h3 class="title">سفارش شما</h3>
+                    </div>
+                    <div class="order-summary">
+                        <div class="order-col">
+                            <div><strong>محصولات</strong></div>
+                            <div><strong>جمع</strong></div>
+                        </div>
+                        <div class="order-products">
+
+                            @foreach (var item in Model.Carts)
+                            {
+                                <div class="order-col">
+                                    <div> <img src="@Url.Content($@"~/Img/{item.Product.Images[0].FileName}")" width="64" height="64" /> "@item.Quntity x @item.Product.Title" </div>
+                                    
+                                    <div>ریال @item.TotalPrice.ToString("0,0")</div>
+                                   
+
+                                </div>
+                            }
+
+
+                        </div>
+                        <div class="order-col">
+                            <div>کرایه</div>
+                            <div><strong>رایگان</strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div>تعداد</div>
+                            <div><strong>@Model.Quntity</strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div><strong>جمع کل</strong></div>
+                            <div><strong class="order-total">ریال @Model.TotalPrice.ToString("0,0")</strong></div>
+                        </div>
+                    </div>
+
+
+                    <div class="payment-method">
+                        <div class="input-radio">
+                            <input type="radio" name="InfoPay" value="0" id="payment-1">
+                            <label for="payment-1">
+                                <span></span>
+                                واریز به بانک
+                            </label>
+                            
+                            <div class="caption">
+                                <p>
+                                    شما می توانید از طریق بانک های عضو شتاب به حساب زیر پرداخت کنید و بعد از پرداخت به ما اطلاع دهید
+                                    به نام حامد شماره حساب 1111111111 نزد بانک ملت
+                                </p>
+                            </div>
+                        </div>
+                        <div class="input-radio">
+                            <input type="radio" name="InfoPay" value="1" id="payment-2">
+                            <label for="payment-2">
+                                <span></span>
+                                پرداخت در محل
+                            </label>
+                            <div class="caption">
+                                <p>شما با این گزینه اعلام می کنید در زمان تحویل گرفتن محصول هزینه را پرداخت می کنید</p>
+                            </div>
+                        </div>
+                        <div class="input-radio">
+                            <input type="radio" name="InfoPay" value="2" id="payment-3" checked="checked">
+                            <label for="payment-3">
+                                <span></span>
+                                پرداخت آنلاین
+                            </label>
+                            <div class="caption">
+                                <p>پرداخت از طریق درگاه بانک ملت</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-checkbox">
+                        <input type="checkbox" name="Terms" value="true" checked="checked" id="terms">
+                        <label for="terms">
+                            <span></span>
+                            من همه قوانین سایت را مطالعه کردم <a href="#">تایید می کنم</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="primary-btn order-submit">ثبت سفارش</button>
+                </div>
+                <!-- /Order Details -->
+                <div class="col-md-7">
+                    <!-- Billing Details -->
+                    <div class="billing-details">
+                        <div class="section-title">
+                            <h3 class="title">مشخصات دریافت کننده</h3>
+                        </div>
+                      
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                         </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.FirstName" class="input" placeholder="نام">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.LastName" class="input" placeholder="نام خانوادگی">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.Email" class="input" placeholder="ایمیل">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.Address" class="input" placeholder="آدرس">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.City" class="input" placeholder="شهر">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.Country" class="input" placeholder="استان">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.PostCode" class="input" placeholder="کد پستی">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InfoPerson.Tel" class="input" placeholder="تلفن">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea asp-for="InfoPerson.Description" class="input" placeholder="توضیحات"></textarea>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+    </div>
+    <!-- /SECTION -->
+    </form>

@@ -1,0 +1,27 @@
+﻿@model BreedCrumbViewModel
+
+@{ 
+    var Link = Model.Link.Split("/");
+}
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree pull-right">
+                    @*@foreach (var item in Link)
+        {
+            <li><a href="@Model">@item</a></li>
+        }*@
+
+                    <li><a>@Model.Link</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->

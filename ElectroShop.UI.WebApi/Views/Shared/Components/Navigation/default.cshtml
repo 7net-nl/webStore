@@ -1,0 +1,51 @@
+﻿<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav pull-right">
+
+
+                @foreach (var item in ViewBag?.Category as List<CategoryViewModel>)
+                {
+                    if (ViewBag?.SelectCategory == item.Name)
+                    {
+                        <li class="active"><a>@item.Name</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="Store" asp-controller="Home" asp-route-Category="@item.Name">@item.Name</a></li>
+                    }
+
+
+                }
+
+                @if (ViewBag?.SelectCategory == "")
+                {
+                    <li class="active"><a>همه محصولات</a></li>
+                }
+                else
+                {
+                    <li><a asp-action="Store" asp-controller="Home">همه محصولات</a></li>
+                }
+
+                @if (ViewBag?.SelectCategory == null)
+                {
+                    <li class="active"><a asp-action="Index" asp-controller="Home">صفحه اصلی</a></li>
+                }
+                else
+                {
+                    <li><a asp-action="Index" asp-controller="Home">صفحه اصلی</a></li>
+                }
+
+
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->

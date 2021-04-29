@@ -1,0 +1,344 @@
+﻿@inject ElectroShop.Service.Application.Categorys.ICategoryService CategoryService
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" lang="fa">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>فروشگاه لوازم دیجیتال</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true"/>
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="~/css/slick.css"  asp-append-version="true"/>
+    <link type="text/css" rel="stylesheet" href="~/css/slick-theme.css"  asp-append-version="true"/>
+
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="~/css/nouislider.min.css"  asp-append-version="true"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="~/css/font-awesome.min.css"   asp-append-version="true"/>
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/css/style.css"  asp-append-version="true"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- TOP HEADER -->
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-map-marker"></i> None</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Test@email.com</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i> +989360000000</a></li>
+
+                </ul>
+                <ul class="header-links pull-left">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-action="SignOut" asp-controller="home" asp-area="Users"><i class="fa fa-user-o"></i> خروج</a></li>}
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+
+                        <li><a asp-action="SignUp" asp-controller="Home" asp-area="Users"><i class="fa fa-user-o"></i> ثبت نام</a></li>
+                        <li><a asp-action="SignIn" asp-controller="Home" asp-area="Users"><i class="fa fa-user-o"></i> ورود</a></li>
+
+                    }
+
+                    <li><a asp-action="Index" asp-controller="Home" asp-area="Home" asp-route-Lang="en"><i class="fa fa-user-o"></i> انگلیسی</a></li>
+                    <li><a asp-action="Index" asp-controller="Home" asp-area="Home" asp-route-Lang="fa"><i class="fa fa-user-o"></i> فارسی</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /TOP HEADER -->
+        <!-- MAIN HEADER -->
+        <div id="header">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+
+               
+                    <!-- ACCOUNT -->
+                    <div class="col-md-3">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="header-ctn">
+                                <!-- Cart -->
+
+                                @await Html.PartialAsync("_CartPartial")
+                                <!-- /Cart -->
+                                <!-- Wishlist -->
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-heart-o"></i>
+                                        <span>محبوب ترین ها</span>
+                                        <div class="qty">3</div>
+                                    </a>
+                                    <div class="cart-dropdown">
+                                        <div class="cart-list">
+                                            <div class="product-widget">
+                                                <div class="product-img">
+                                                    <img src="~/img/product01.png" alt="">
+                                                </div>
+                                                <div class="product-body">
+                                                    <h3 class="product-name"><a href="#">نام محصول</a></h3>
+                                                    <h4 class="product-price">$980.00</h4>
+                                                </div>
+                                                <button class="delete"><i class="fa fa-close"></i></button>
+                                            </div>
+
+                                            <div class="product-widget">
+                                                <div class="product-img">
+                                                    <img src="~/img/product02.png" alt="">
+                                                </div>
+                                                <div class="product-body">
+                                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                                    <h4 class="product-price">$980.00</h4>
+                                                </div>
+                                                <button class="delete"><i class="fa fa-close"></i></button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                                <!-- /Wishlist -->
+                                <!-- Menu Toogle -->
+                                <div class="menu-toggle">
+                                    <a href="#">
+                                        <i class="fa fa-bars"></i>
+                                        <span>Menu</span>
+                                    </a>
+                                </div>
+                                <!-- /Menu Toogle -->
+                            </div>
+                        }
+                        </div>
+                    <!-- /ACCOUNT -->
+        
+                    <!-- SEARCH BAR -->
+                    <div class="col-md-6">
+                        
+                        <div class="header-search">
+                            <form asp-action="Search" asp-controller="Home" asp-area="Home" method="post">
+                                <button type="submit" class="search-btn">جستجو</button>
+                                <input name="q" class="input" placeholder="متن جستجو وارد کنید">
+                                <select class="input-select">
+                                    <option disabled="disabled" selected="selected">انتخاب کنید</option>
+                                    @foreach (var item in CategoryService.GetAll())
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                        
+                                    }
+
+                                </select>
+
+                            </form>
+                        </div>
+                     
+                    </div>
+                    <!-- /SEARCH BAR -->
+                    <!-- LOGO -->
+                    <div class="col-md-3 clearfix">
+                        <div class="header-logo">
+                            <a asp-action="Index" asp-controller="Home" asp-area="Home" class="logo">
+                                <h3 class="logo-h4">فروشگاه لوازم دیجیتال</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /LOGO -->
+
+
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+    <!-- NAVIGATION -->
+    <nav id="navigation">
+        <!-- container -->
+        <div class="container">
+            <!-- responsive-nav -->
+            <div id="responsive-nav">
+                <!-- NAV -->
+                <ul class="main-nav nav navbar-nav pull-right">
+
+                   @await Html.PartialAsync("_Categorynav",new CategoryViewModel {  Category = CategoryService.GetAll()})
+                   
+                </ul>
+                <!-- /NAV -->
+            </div>
+            <!-- /responsive-nav -->
+        </div>
+        <!-- /container -->
+    </nav>
+    <!-- /NAVIGATION -->
+    @RenderBody()
+    <!-- NEWSLETTER -->
+    <div id="newsletter" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="newsletter">
+                        <p>ثبت نام برای <strong>دریافت آخرین تخفیفات</strong></p>
+                        <form>
+                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> عضویت</button>
+                            <input class="input" type="email" placeholder="لطفا ایمیل خود را وارد کنید">
+
+                        </form>
+                        <ul class="newsletter-follow">
+                            <li>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /NEWSLETTER -->
+    <!-- FOOTER -->
+    <footer id="footer">
+        <!-- top footer -->
+        <div class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">درباره ما</h3>
+                            <p>من حامد برنامه نویس سایت هستم و طراحی و برنامه نویسی سایت یر عهده من بوده است</p>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fa fa-map-marker"></i>آدرس : نامشخص </a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>نلفن : 093600000000 </a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>ایمیل : Test@gmail.com </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            
+                            <ul class="footer-links">
+                                @await Html.PartialAsync("_Categorynav", new CategoryViewModel { Category = CategoryService.GetAll() })
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="clearfix visible-xs"></div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">اطلاعات</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">درباره ما</a></li>
+                                <li><a href="#">تماس یا ما</a></li>
+                                <li><a href="#">حریم خصوصی</a></li>
+                                <li><a href="#">برگشت سفارش</a></li>
+                                <li><a href="#">شکایات</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">خدمات</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">پروفایل</a></li>
+                                <li><a href="#">سبد خرید</a></li>
+                                <li><a href="#">محبوب ترین ها</a></li>
+                                <li><a href="#">پیگیری سفارش</a></li>
+                                <li><a href="#">کمک</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /top footer -->
+        <!-- bottom footer -->
+        <div id="bottom-footer" class="section">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul class="footer-payments">
+                            <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+                            <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+                        </ul>
+                        <span class="copyright">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This Design is made with by <a href="hamed" style="color:white;" target="_blank">Hamed</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </span>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /bottom footer -->
+    </footer>
+    <!-- /FOOTER -->
+    <!-- jQuery Plugins -->
+
+    <script src="~/js/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/js/slick.min.js" asp-append-version="true"></script>
+    <script src="~/js/nouislider.min.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.zoom.min.js" asp-append-version="true"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    <script src="~/lib/additional-methods.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery.validate.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/lib/localization/messages_fa.js" asp-append-version="true"></script>
+    <script src="https://www.google.com/recaptcha/api.js" asp-append-version="true"></script>
+   
+
+    @RenderSection("scripts", false)
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿<!-- jQuery Plugins -->
+<script src="~/js/jquery.min.js" asp-append-version="true"></script>
+<script src="~/js/bootstrap.min.js" asp-append-version="true"></script>
+<script src="~/js/slick.min.js" asp-append-version="true"></script>
+<script src="~/js/nouislider.min.js" asp-append-version="true"></script>
+<script src="~/js/jquery.zoom.min.js" asp-append-version="true"></script>
+<script src="~/js/main.js" asp-append-version="true"></script>
+<script src="~/lib/additional-methods.js" asp-append-version="true"></script>
+<script src="~/lib/jquery.validate.js" asp-append-version="true"></script>
+<script src="~/lib/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+<script src="~/lib/localization/messages_fa.js" asp-append-version="true"></script>
+<!-- jQuery Plugins -->
+
+<script>
+   
+    $(".add-to-cart-btn").click(function () {
+       
+        var getid = $("#product").val();
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://localhost:44327/api/v1/Order?Id=" + getid,
+            "method": "POST",
+            "headers": {
+                "cache-control": "no-cache",
+                "Postman-Token": "0c5228da-6248-46d9-babc-c8869938dd94"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    });
+</script>
+

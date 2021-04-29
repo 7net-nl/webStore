@@ -1,0 +1,57 @@
+﻿ <!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+
+        <div class="row">
+
+            <div class="section-title col-md-12">
+                <h3 class="title">@ViewBag?.SectionTitle</h3>
+
+            </div>
+
+            @{ 
+                var GetAll = ViewBag?.Product as List<ProductViewModel>;
+            }
+            @for (int i = 0; i < 3; i++)
+            {
+                <div class="col-md-4 col-xs-6">
+
+
+                    <div class="products-widget-slick" data-nav="#slick-nav-3">
+                        <div>
+                            @foreach (var item in GetAll.OrderBy(c => c.ID).Skip(i * 3).Take(3))
+                            {
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <a asp-action="Detail" asp-controller="Home" asp-area="Home" asp-route-Id="@item.ID"><img src=@Url.Content($@"~/img/{item.Images[0].FileName}") alt=""></a>
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">@item.Category.Name</p>
+                                        <h3 class="product-name"><a asp-action="Detail" asp-controller="Home" asp-area="Home" asp-route-Id="@item.ID">@item.Title</a></h3>
+                                        @if (@item.DiscountPrice > 0)
+                                        {
+                                            <h4 class="product-price">ریال @item.Price.Value.ToString("0,0") <del class="product-old-price">ریال @item.Price.Value.ToString("0,0")</del></h4>
+                                        }
+                                        else
+
+                                        {
+                                            <h4 class="product-price">ریال @item.Price.Value.ToString("0,0")</h4>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="clearfix visible-sm visible-xs"></div>
+            }
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->

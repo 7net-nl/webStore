@@ -1,0 +1,74 @@
+﻿@model SectionViewModel
+
+<!-- store products -->
+<div class="row">
+    @foreach (var item in Model.Products)
+    {
+
+    <!-- product -->
+    <div class="col-md-4 col-xs-6">
+        <div class="product">
+            <div class="product-img">
+                <a asp-action="Detail" asp-controller="Home" asp-area="Home" asp-route-Id="@item.ID" ><img src=@Url.Content($@"~/img/{item.Images[0].FileName}") alt="" /></a>
+                <div class="product-label">
+                    @switch (item.Type)
+                    {
+                        case EnumType.NewAndDiscount:
+                            <span class="new">New</span>
+                            <span class="sale">-30%</span>
+                            break;
+                        case EnumType.OldAndDiscount:
+                            <span class="sale">-30%</span>
+                            break;
+                        case EnumType.New:
+                            <span class="new">NEW</span>
+                            break;
+                        case EnumType.Discount:
+                            <span class="sale">-30%</span>
+                            break;
+
+                    }
+
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-category">@item.Category.Name</p>
+                <h3 class="product-name"><a asp-action="Detail" asp-controller="Home" asp-area="Home" asp-route-Id="@item.ID">@item.Title</a></h3>
+                @if (@item.DiscountPrice > 0)
+                {
+                    <h4 class="product-price">ریال @item.Price.ToString("0,0").ToFarsiNumber()<del class="product-old-price">ریال @item.Price.ToString("0,0").ToFarsiNumber()</del></h4>
+                }
+                else
+
+                {
+                    <h4 class="product-price">ریال @item.Price.ToString("0,0").ToFarsiNumber()</h4>
+                }
+                <div class="product-rating">
+                    @for (int i = 0; i < item.Rate; i++)
+                    {
+                        <i class="fa fa-star"></i>
+                    }
+
+                </div>
+                <div class="product-btns">
+                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                </div>
+            </div>
+            @if(User.Identity.IsAuthenticated)
+            {
+            <div class="add-to-cart">
+                <form asp-action="AddTo" asp-controller="Home" asp-area="Cart" asp-route-Id="@item.ID" method="post">
+                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> اضافه کردن به سبد خرید</button>
+                </form>
+            </div>
+            }
+        </div>
+    </div>
+    <!-- /product -->
+    <div class="clearfix visible-sm visible-xs"></div>
+    }
+
+</div>
+<!-- /store products -->

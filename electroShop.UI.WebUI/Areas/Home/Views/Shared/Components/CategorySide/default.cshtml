@@ -1,0 +1,25 @@
+﻿@model CategorySideViewModel
+
+<h3 class="aside-title">دسته بندی</h3>
+<div class="checkbox-filter">
+
+    @foreach (var item in Model.Categories)
+    {
+        <div class="input-checkbox">
+            @if (Model.SelectCategory == item.Name)
+            {
+                <input type="checkbox" id="@item.Name" checked="checked" disabled="disabled">
+            }
+            else
+            {
+                <input type="checkbox" id="@item.Name" disabled="disabled">
+            }
+            <label for="@item.Name">
+                <span></span>
+                <a asp-action="Store" asp-controller="Home" asp-area="Home" asp-route-Category="@item.Name">@item.Name</a>
+                <small>(@Model.Products.Where(c => c.Category_ID == item.ID).Count())</small>
+
+            </label>
+        </div>
+    }
+</div>

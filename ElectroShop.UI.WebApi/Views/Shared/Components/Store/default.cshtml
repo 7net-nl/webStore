@@ -1,0 +1,29 @@
+﻿
+@{ 
+    Layout = "_Layout";
+}
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- STORE -->
+            <div id="store" class="col-md-9">
+               @await Html.PartialAsync("StoreTopFilter")
+                <!-- store products -->
+                <div class="row">
+                    @await Html.PartialAsync("Product")
+                    @await Component.InvokeAsync("Pagination")
+                </div>
+            </div>
+            <!-- /STORE -->
+           @await  Component.InvokeAsync("AsideWidget")
+         
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->

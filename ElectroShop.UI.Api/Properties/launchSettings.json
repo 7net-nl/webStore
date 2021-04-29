@@ -1,0 +1,19 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:4775/",
+      "sslPort": 44359
+    }
+  },
+  "profiles": {
+    "Start": {
+      "commandName": "IISExpress",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "ErrorString": "Error reading JObject from JsonReader. Path '', line 0, position 0."
+    }
+  }
+}

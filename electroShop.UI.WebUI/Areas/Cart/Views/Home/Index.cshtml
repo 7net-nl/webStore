@@ -1,0 +1,94 @@
+﻿@model CartLineViewModel
+
+@await Html.PartialAsync("_BreedCrumb", new BreedCrumbViewModel { Link = "سبد خرید" });
+
+
+
+<div class="section" id="cart-view">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="col-md-12">
+            <div class="cart-view-area">
+                <div class="cart-view-table">
+                    <form action="">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>حذف</th>
+                                        <th>مبلغ کل</th>
+                                        <th>تعداد</th>
+                                        <th>قیمت</th>
+                                        <th>دسته بندی</th>
+                                        <th>عکس</th>
+                                        <th>عنوان</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    @foreach (var item in Model.Cart)
+                                    {
+                                  
+                                        
+                                    <tr>
+                                        <td><a asp-action="Remove" asp-controller="Home" asp-area="Cart" asp-route-Id="@item.Product.ID" asp-route-Remove="true" class="remove"><fa class="fa fa-close"></fa></a></td>
+                                        <td>ریال @item.TotalPrice.ToString("0,0")</td>
+                                        @if (item.Product.DiscountPrice == null)
+                                        {
+                                            <td>ریال @item.Product.Price.ToString("0,0")</td>
+                                        }
+                                        else
+                                        {
+                                            <td>ریال @item.Product.DiscountPrice?.ToString("0,0")</td>
+                                        }
+                                        <td>
+
+                                            <input class="aa-cart-quantity" min="1" value="@item.Quntity" readonly />
+                                        </td>
+
+                                        <td>@item.Product.Category.Name</td>
+                                        <td><a asp-action="Detail" asp-controller="Home" asp-area="Home" asp-route-Id="@item.Product.ID"><img src="@Url.Content($@"~/Img/{item.Product.Images[0].FileName}")" alt="img"></a></td>
+                                        <td><a class="aa-cart-title" asp-action="Detail" asp-controller="Home" asp-area="Home" asp-route-Id="@item.Product.ID">@item.Product.Title</a></td>
+                                    </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="6" class="aa-cart-view-bottom">
+                                            <div class="aa-cart-coupon">
+                                                <input class="aa-coupon-code" type="text" placeholder="Coupon" disabled="disabled">
+                                                <input class="aa-cart-view-btn" type="submit" value="کد تخفیف" disabled="disabled">
+                                            </div>
+                                           
+                                            <input asp-action="Cart" asp-controller="Home" asp-area="Cart" class="aa-cart-view-btn" type="submit" value="بروز رسانی سبد خرید">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <!-- Cart Total view -->
+                    <div class="cart-view-total">
+                        <h4>مجموعه کل کارت</h4>
+                        <table class="aa-totals-table">
+                            <tbody>
+                                <tr>
+                                    <th>مجموعه کل</th>
+                                    <td>ریال @Model.TotalPrice.ToString("0,0")</td>
+                                </tr>
+                                <tr>
+                                    <th>جمع کل</th>
+                                    <td>ریال @Model.TotalPrice.ToString("0,0")</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a asp-action="Index" asp-controller="CheckOut" asp-area="Cart" class="aa-cart-view-btn">ثبت و تایید اطلاعات</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+
+

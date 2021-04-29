@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\13971222055429_init01.cs" />
+    <Compile Remove="Migrations\13971222055429_init01.Designer.cs" />
+    <Compile Remove="Migrations\13971222061504_addseed01.cs" />
+    <Compile Remove="Migrations\13971222061504_addseed01.Designer.cs" />
+    <Compile Remove="Migrations\13971222142436_addseed.cs" />
+    <Compile Remove="Migrations\13971222142436_addseed.Designer.cs" />
+    <Compile Remove="Migrations\13971222145634_init01.cs" />
+    <Compile Remove="Migrations\13971222145634_init01.Designer.cs" />
+    <Compile Remove="Migrations\13971222150716_init01.cs" />
+    <Compile Remove="Migrations\13971222150716_init01.Designer.cs" />
+    <Compile Remove="Migrations\13971222154446_init01.cs" />
+    <Compile Remove="Migrations\13971222154446_init01.Designer.cs" />
+    <Compile Remove="Migrations\13971222155701_init01.cs" />
+    <Compile Remove="Migrations\13971222155701_init01.Designer.cs" />
+    <Compile Remove="Migrations\13971222161414_init01.cs" />
+    <Compile Remove="Migrations\13971222161414_init01.Designer.cs" />
+    <Compile Remove="Migrations\13971222172103_removedata.cs" />
+    <Compile Remove="Migrations\13971222172103_removedata.Designer.cs" />
+    <Compile Remove="Migrations\13971222172154_addnewdata.cs" />
+    <Compile Remove="Migrations\13971222172154_addnewdata.Designer.cs" />
+    <Compile Remove="Migrations\20210429160950_adddata.cs" />
+    <Compile Remove="Migrations\20210429160950_adddata.Designer.cs" />
+    <Compile Remove="Migrations\20210429161322_adddata.cs" />
+    <Compile Remove="Migrations\20210429161322_adddata.Designer.cs" />
+    <Compile Remove="Migrations\20210429162054_adddata.cs" />
+    <Compile Remove="Migrations\20210429162054_adddata.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="2.3.2" />
+    <PackageReference Include="IdentityServer4.EntityFramework" Version="2.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

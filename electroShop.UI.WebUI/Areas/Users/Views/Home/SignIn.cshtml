@@ -1,0 +1,53 @@
+﻿@model SignInViewModel
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+            </div>
+            <div class="col-md-7">
+                <!-- Billing Details -->
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">ورود به سایت</h3>
+                    </div>
+                    <form asp-action="SignIn" asp-controller="Home" asp-area="Users" method="post">
+                     
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="Email" class="input" placeholder="ایمیل">
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Password" class="input" placeholder="رمز عبور">
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-default">ورود</button>
+                                <a asp-action="SignUp" asp-controller="Home" asp-area="Users" class="btn btn-default">ثبت نام</a>
+                            </div>
+                        </div>
+                    </form>
+
+                  <div class="col-md-12">
+                    <form asp-action="Index" asp-controller="Login" method="Post">
+                        <div class="form-group">
+                            @foreach (var item in Model.Providers)
+                            {
+
+                                <button type="submit" name="Provider" value="@item.Name" class="btn btn-default">@item.DisplayName</button>
+
+                            }
+                        </div>
+                    </form>
+                  </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
